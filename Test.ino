@@ -52,7 +52,9 @@ void setup(){
 	//Serial1.begin(115200);
 }
 void loop(){
-	
+	line_update();
+	distance_from_origin();
+	linetrace();
 }
 
 void line_update(){
