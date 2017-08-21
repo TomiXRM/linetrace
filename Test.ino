@@ -1,11 +1,7 @@
 //Arduino mega2560 SRC14 project
 
-//Arduino mega2560 SRC14 project
-#include"Wire.h"
-#define Kp 1.2
-#define Kd 0.6
-#define Rsilver 0
-#define Lsilver 1
+#define Kp
+#define Kd
 #define White_Threshold0 680
 #define White_Threshold1 680
 #define White_Threshold2 680
@@ -47,10 +43,19 @@ struct{
 	bool OnSilver[7];
 	bool OnBlack[7];
 	bool OnWhite[7];
-	int Silver_count[3];
 	int Motorleft;
 	int Motorright;
 }line;
+
+void setup(){
+	Serial.begin(115200);
+	//Serial1.begin(115200);
+}
+void loop(){
+	line_update();
+	distance_from_origin();
+	linetrace();
+}
 
 void line_update(){
 	for(uint8_t i=0; i<7;i++){
@@ -116,36 +121,5 @@ void linetrace(int mpower,float _KP,float _KD){
 	line.Motorleft = mpower+line.Origin_Distance*_KP;
 	line.Motorright = mpower-line.Origin_Distance*_KP;
 	//MD.motor(line.Motorleft,line.Motorright);
-}
-
-void moonbase1(){
-	
-}
-
-void moonbase2(){
-	
-}
-
-void setup(){
-	Serial.begin(115200);
-	pinMode(13,OUTPUT);//buzzer
-	Wire.begin();
-	//Serial1.begin(115200);
-}
-void loop(){
-	line_update();
-	if(line.OnSilver[3]){
-		//MD.motor(0,0);
-		delay(1000);
-		//MD.motor(400,400);
-		delay(300);
-	}else if(line.OnSilver[2]||line.OnSilver[1]){
-		//right miningpit
-	}else if(line.OnSilver[4]||line.OnSilver[5]){
-		//left moonbase1,2
-	}else{
-		distance_from_origin();
-		linetrace(80,Kp,Kd);
-	}
 }
 
