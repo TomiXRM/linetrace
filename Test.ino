@@ -76,7 +76,7 @@ void line_update(){
 			line.OnBlack[i] = 0;
 		}else{
 			line.OnWhite[i] = 0;
-			line.OnBlack[i] = 0;
+			line.OnBlack[i] = 1;
 		}
 	}
 }
