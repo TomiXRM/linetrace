@@ -112,7 +112,9 @@ void distance_from_origin(){
 		line.Origin_Distance += -50;
 		n++;
 	}
-	line.Origin_Distance = line.Origin_Distance / n;
+	if(n!=0){
+	        line.Origin_Distance = line.Origin_Distance / n;
+	}
 }
 
 void linetrace(int mpower,float _KP,float _KD){
